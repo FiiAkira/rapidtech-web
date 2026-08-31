@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "outputDirectory": "public",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.3"
@@ -31,7 +30,7 @@
     "env": {
         "APP_NAME": "RapidTech",
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         "APP_URL": "https://rapidtech-web.vercel.app",
         "APP_KEY": "base64:qODzrc6fck74qDMBmiMpOccsWFqiDPQrzpYlHx/VtWg=",
         "CACHE_STORE": "array",
