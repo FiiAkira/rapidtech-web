@@ -3,7 +3,10 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.7.3"
+            "use": "vercel-php@0.7.3",
+            "config": {
+                "installCommand": "composer install --no-dev --optimize-autoloader"
+            }
         },
         {
             "src": "public/**",
@@ -12,8 +15,12 @@
     ],
     "routes": [
         {
-            "src": "/(css|js|images)/(.*)",
+            "src": "/(css|js|images|fonts)/(.*)",
             "dest": "public/$1/$2"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "public/favicon.ico"
         },
         {
             "src": "/(.*)",
@@ -21,13 +28,19 @@
         }
     ],
     "env": {
+        "APP_NAME": "RapidTech",
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
-        "APP_URL": "https://rapidtech.vercel.app",
-        "CACHE_DRIVER": "array",
+        "APP_DEBUG": "false",
+        "APP_URL": "https://rapidtech-web.vercel.app",
+        "APP_KEY": "base64:qODzrc6fck74qDMBmiMpOccsWFqiDPQrzpYlHx/VtWg=",
+        "CACHE_STORE": "array",
         "SESSION_DRIVER": "cookie",
+        "SESSION_LIFETIME": "120",
         "QUEUE_CONNECTION": "sync",
         "LOG_CHANNEL": "stderr",
-        "VIEW_COMPILED_PATH": "/tmp"
+        "VIEW_COMPILED_PATH": "/tmp",
+        "FILESYSTEM_DISK": "local",
+        "DB_CONNECTION": "sqlite",
+        "DB_DATABASE": "/tmp/database.sqlite"
     }
 }
