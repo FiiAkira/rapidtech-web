@@ -1,37 +1,37 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "api/index.php",
-            "use": "vercel-php@0.7.3"
-        },
-        {
-            "src": "public/**",
-            "use": "@vercel/static"
+    "framework": null,
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.7.4"
         }
-    ],
+    },
     "routes": [
         {
-            "src": "/(css|js|images|fonts|build)/(.*)",
-            "dest": "public/$1/$2"
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "src": "/(css|js|images|fonts)/(.*)",
+            "dest": "/public/$1/$2"
         },
         {
             "src": "/favicon\\.ico",
-            "dest": "public/favicon.ico"
+            "dest": "/public/favicon.ico"
         },
         {
             "src": "/robots\\.txt",
-            "dest": "public/robots.txt"
+            "dest": "/public/robots.txt"
         },
         {
             "src": "/(.*)",
-            "dest": "api/index.php"
+            "dest": "/api/index.php"
         }
     ],
     "env": {
         "APP_NAME": "RapidTech",
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
+        "APP_DEBUG": "false",
         "APP_URL": "https://rapidtech-web.vercel.app",
         "APP_KEY": "base64:qODzrc6fck74qDMBmiMpOccsWFqiDPQrzpYlHx/VtWg=",
         "CACHE_STORE": "array",
@@ -40,8 +40,11 @@
         "QUEUE_CONNECTION": "sync",
         "LOG_CHANNEL": "stderr",
         "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
-        "FILESYSTEM_DISK": "local",
-        "DB_CONNECTION": "sqlite",
-        "DB_DATABASE": "/tmp/database.sqlite"
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "FILESYSTEM_DISK": "local"
     }
 }

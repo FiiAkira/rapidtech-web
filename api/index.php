@@ -1,9 +1,14 @@
 <?php
 
 /**
- * Setup writable /tmp directories for Vercel serverless (read-only filesystem).
+ * Vercel Serverless Entry Point for Laravel
+ *
  * Vercel's filesystem is read-only except for /tmp.
+ * We create all required writable directories in /tmp
+ * before booting Laravel.
  */
+
+// Create all required writable directories in /tmp
 $tmpDirs = [
     '/tmp/storage/app/public',
     '/tmp/storage/framework/cache/data',
@@ -19,4 +24,9 @@ foreach ($tmpDirs as $dir) {
     }
 }
 
-require __DIR__.'/../public/index.php';
+// Symlink storage/app/public -> public/storage so asset URLs work
+if (!file_exists(__DIR__ . '/../public/storage')) {
+    @symlink('/tmp/storage/app/public', __DIR__ . '/../public/storage');
+}
+
+require __DIR__ . '/../public/index.php';
